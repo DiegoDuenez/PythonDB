@@ -1,44 +1,68 @@
 import pymongo
 import dns
+from datetime import date
+import time
 
 
-client = pymongo.MongoClient("mongodb+srv://diego:192712883@cluster0.o7i7b.mongodb.net/IoT?retryWrites=true&w=majority")
-database = client.IoT
 
 class Database:
+
+    def __init__(self):
+        self.client = pymongo.MongoClient("mongodb+srv://diego:192712883@cluster0.o7i7b.mongodb.net/IoT?retryWrites=true&w=majority")
+        self.database = self.client.IoT
     
     def all(self):
-        print(client.list_database_names())
+        print(self.client.list_database_names())
         
     def insert(self, col, dic):
-        col = database[col]
+        col = self.database[col]
         col.insert_one(dic)
         
     def select(self, col):
-        col = database[col]
+        col = self.database[col]
         for dato in col.find():
             print(dato)
     
     def delete(self, col, dic):
-        col = database[col]
+        col = self.database[col]
         col.delete_one(dic)
 
 
 
 
-# EJEMPLO DE INSERTAR
+# ASI FUNCIONA PARA SACAR LA FECHA ACTUAL
+# today = date.today()
+# time = time.strftime("%H:%M:%S")
+# fecha = str(today) + ' ' + str(time)
+# print(fecha)
+
+
+# EJEMPLO DE INSERTAR EN TABLA SENSORES_TIPOS
 # db = Database()
-# coleccion = "historial"
-# diccionario = {"temperatura": 20, "distancia":30}
-# db.insert(coleccion, diccionario)
+# coleccion = "sensores_tipos"
+# diccionario = {"tipo":"pir"}
+# db.insert(coleccion, diccionario )
 # db.select(coleccion)
+
+
+# EJEMPLO DE INSERTAR EN TABLA SENSORES_REGISTRADOS
+# coleccion = "sensores_registrados"
+# diccionario = {"nombre":"pir_sala", "tipo_id":1}
+# db.insert(coleccion, diccionario )
+# db.select(tabla)
+
+
+# EJEMPLO DE INSERTAR EN TABLA HISTORIAL
+# coleccion = "historial"
+# diccionario = {"sensor_id": 1, "valor_bool":1, "fecha_tiempo":fecha}
+# db.insert(coleccion, diccionario )
+# db.select(tabla)
+
 
 
 # EJEMPLO DE ELIMINAR
-# db = Database()
 # coleccion = "historial"
-# diccionario = {"temperatura": 20, "distancia":30}
+# diccionario = {"sensor_id":1}
 # db.delete(coleccion, diccionario)
-# db.select(coleccion)
-
+# db.select(tabla)  
 
