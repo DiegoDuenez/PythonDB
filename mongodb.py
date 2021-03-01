@@ -8,7 +8,7 @@ import time
 class Database:
 
     def __init__(self):
-        self.client = pymongo.MongoClient("mongodb+srv://diego:192712883@cluster0.o7i7b.mongodb.net/IoT?retryWrites=true&w=majority")
+        self.client = pymongo.MongoClient("mongodb+srv://maria:MariOli2005@sandbox.sn9l7.mongodb.net/IoT?retryWrites=true&w=majority")
         self.database = self.client.IoT
     
     def all(self):
@@ -49,14 +49,14 @@ class Database:
 # coleccion = "sensores_registrados"
 # diccionario = {"nombre":"pir_sala", "tipo_id":1}
 # db.insert(coleccion, diccionario )
-# db.select(tabla)
+# db.select(coleccion)
 
 
 # EJEMPLO DE INSERTAR EN TABLA HISTORIAL
 # coleccion = "historial"
 # diccionario = {"sensor_id": 1, "valor_bool":1, "fecha_tiempo":fecha}
 # db.insert(coleccion, diccionario )
-# db.select(tabla)
+# db.select(coleccion)
 
 
 
@@ -64,5 +64,5 @@ class Database:
 # coleccion = "historial"
 # diccionario = {"sensor_id":1}
 # db.delete(coleccion, diccionario)
-# db.select(tabla)  
+# db.select(coleccion)  
 
